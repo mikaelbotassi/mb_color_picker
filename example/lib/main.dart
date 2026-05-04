@@ -67,17 +67,21 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: .center,
+          spacing: 16,
           children: [
             const Text('See for yourself:'),
             MbColorPickerWidget(
+              initialValue: _value,
               onChanged: (newValue){
-                _value = newValue;
+                setState(() {
+                  _value = newValue;
+                });
               },
             ),
             Container(
               decoration: decoration,
-              width: 48,
-              height: 48,
+              width: 128,
+              height: 128,
             )
           ],
         ),
