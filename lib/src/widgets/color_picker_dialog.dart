@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:mb_color_picker/src/models/color_picker_type.dart';
 import 'package:mb_color_picker/src/models/color_picker_value.dart';
 import 'package:mb_color_picker/src/utils/extensions/gradient_extension.dart';
@@ -53,7 +54,9 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final (colors, textTheme) = (theme.colorScheme, theme.textTheme);
+    final colors = theme.colorScheme;
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final availableWidth = clampDouble(screenWidth - 96, 280, 420);
     return AlertDialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusGeometry.circular(8),
@@ -72,28 +75,23 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
         type: type,
       ),
       content: SizedBox(
+        width: availableWidth,
         child: SingleChildScrollView(
           child: type == ColorPickerType.solid
-              ? SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: ColorPicker(
-                    pickerColor: solidValue.value,
-                    onColorChanged: (color) {
-                      solidValue = SolidColorValue(color);
-                    },
-                    displayThumbColor: true,
-                    pickerAreaHeightPercent: 0.8,
-                  ),
+              ? ColorPicker(
+                  pickerColor: solidValue.value,
+                  onColorChanged: (color) {
+                    solidValue = SolidColorValue(color);
+                  },
+                  displayThumbColor: true,
+                  pickerAreaHeightPercent: 0.8,
                 )
-              : SizedBox(
-                  width: 360,
-                  child: GradientPickerWidget(
-                    onChanged: (newValue){
-                      gradientValue = newValue;
-                    },
-                    initialValue: gradientValue.toGradient(),
-                    maxStops: widget.maxStops,
-                  ),
+              : GradientPickerWidget(
+                  onChanged: (newValue){
+                    gradientValue = newValue;
+                  },
+                  initialValue: gradientValue.toGradient(),
+                  maxStops: widget.maxStops,
                 ),
         ),
       ),
