@@ -72,27 +72,34 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
         type: type,
       ),
       content: SizedBox(
-        width: 360,
         child: SingleChildScrollView(
-          child: type == ColorPickerType.solid ? ColorPicker(
-            pickerColor: solidValue.value,
-            onColorChanged: (color) {
-              solidValue = SolidColorValue(color);
-            },
-            displayThumbColor: true,
-            pickerAreaHeightPercent: 0.8,
-          ) : GradientPickerWidget(
-            onChanged: (newValue){
-              gradientValue = newValue;
-            },
-            initialValue: gradientValue.toGradient(),
-            maxStops: widget.maxStops,
-          ),
+          child: type == ColorPickerType.solid
+              ? SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: ColorPicker(
+                    pickerColor: solidValue.value,
+                    onColorChanged: (color) {
+                      solidValue = SolidColorValue(color);
+                    },
+                    displayThumbColor: true,
+                    pickerAreaHeightPercent: 0.8,
+                  ),
+                )
+              : SizedBox(
+                  width: 360,
+                  child: GradientPickerWidget(
+                    onChanged: (newValue){
+                      gradientValue = newValue;
+                    },
+                    initialValue: gradientValue.toGradient(),
+                    maxStops: widget.maxStops,
+                  ),
+                ),
         ),
       ),
       actions: [
         TextButtonWidget(
-          onPressed: () => Navigator.pop(context, widget.initialValue),
+          onPressed: () => Navigator.pop(context),
           icon: TablerIcons.x,
           text: 'Cancel',
         ),
