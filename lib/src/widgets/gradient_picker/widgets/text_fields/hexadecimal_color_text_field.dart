@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+/// Text field used to edit or display a color as a hexadecimal string.
 class HexadecimalColorTextField extends StatefulWidget {
+  /// Creates a hexadecimal color text field.
   const HexadecimalColorTextField({
     required this.textStyle,
     required this.hexadecimalController,
@@ -10,9 +12,16 @@ class HexadecimalColorTextField extends StatefulWidget {
     super.key,
   });
 
+  /// Controller that stores the hexadecimal value.
   final TextEditingController hexadecimalController;
+
+  /// Whether the field can be edited.
   final bool enabled;
+
+  /// Called when the user submits a hexadecimal value.
   final ValueChanged<String>? onHexadecimalSubmitted;
+
+  /// Text style applied to the field contents.
   final TextStyle? textStyle;
 
   @override
@@ -88,6 +97,7 @@ class _HexadecimalColorTextFieldState extends State<HexadecimalColorTextField> {
   }
 }
 
+/// Input formatter that forces all typed characters to uppercase.
 class UpperCaseTextFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(

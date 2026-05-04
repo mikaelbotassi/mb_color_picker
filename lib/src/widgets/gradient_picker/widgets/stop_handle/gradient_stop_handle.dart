@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mb_color_picker/src/widgets/gradient_picker/widgets/stop_handle/triangle_painter.dart';
 
+/// Displays an interactive handle for selecting and moving a gradient stop.
 class GradientStopHandle extends StatelessWidget {
+  /// Creates a gradient stop handle.
   const GradientStopHandle({
     required this.color,
     required this.selected,
@@ -11,10 +13,19 @@ class GradientStopHandle extends StatelessWidget {
     super.key,
   });
 
+  /// Fill color shown inside the handle.
   final Color color;
+
+  /// Whether this handle is currently selected.
   final bool selected;
+
+  /// Called when the handle is tapped or becomes active.
   final VoidCallback onTap;
+
+  /// Called while the handle is dragged horizontally.
   final ValueChanged<DragUpdateDetails> onDragged;
+
+  /// Total visual height of the handle.
   final double height;
 
   @override

@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 
+/// Paints the triangular pointer displayed below a gradient stop handle.
 class GradientStopTrianglePainter extends CustomPainter {
+  /// Creates a triangle painter for a gradient stop handle.
   const GradientStopTrianglePainter({
     required this.color,
     required this.borderColor,
     required this.selected,
   });
 
+  /// Fill color of the triangle.
   final Color color;
+
+  /// Border color of the triangle.
   final Color borderColor;
+
+  /// Whether the owning handle is selected.
   final bool selected;
 
   @override

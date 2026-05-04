@@ -6,7 +6,9 @@ import 'package:mb_color_picker/src/widgets/gradient_picker/widgets/direction_bu
 import 'package:mb_color_picker/src/widgets/gradient_picker/widgets/gradient_stop_range.dart';
 import 'package:mb_color_picker/src/widgets/gradient_picker/widgets/palette/stop_palette.dart';
 
+/// Displays the full gradient editor UI.
 class GradientPickerWidget extends StatefulWidget {
+  /// Creates a gradient picker widget.
   const GradientPickerWidget({
     required this.initialValue,
     this.onChanged,
@@ -14,8 +16,13 @@ class GradientPickerWidget extends StatefulWidget {
     super.key,
   });
 
+  /// Initial gradient displayed in the editor.
   final Gradient initialValue;
+
+  /// Called whenever the edited gradient value changes.
   final ValueChanged<GradientValue>? onChanged;
+
+  /// Maximum number of gradient stops allowed in the editor.
   final int maxStops;
 
   @override
@@ -73,6 +80,7 @@ class _GradientPickerWidgetState extends State<GradientPickerWidget> {
     );
   }
 
+  /// Notifies listeners with the current gradient picker value.
   void notifyChanged() {
     final stops = controller.sortedStops;
 

@@ -6,7 +6,9 @@ import 'package:mb_color_picker/src/models/color_picker_value.dart';
 import 'package:mb_color_picker/src/widgets/gradient_picker/widgets/text_fields/color_opacity_text_field.dart';
 import 'package:mb_color_picker/src/widgets/gradient_picker/widgets/text_fields/hexadecimal_color_text_field.dart';
 
+/// Displays a compact color picker field with preview, hex value, and opacity.
 class MbColorPickerWidget extends StatefulWidget {
+  /// Creates a color picker widget.
   const MbColorPickerWidget({
     required this.onChanged,
     this.decoration,
@@ -17,11 +19,22 @@ class MbColorPickerWidget extends StatefulWidget {
     super.key,
   });
 
+  /// Initial value displayed by the picker.
   final ColorPickerValue? initialValue;
+
+  /// Called when the selected value changes.
   final ValueChanged<ColorPickerValue> onChanged;
+
+  /// Selection modes available in the dialog.
   final Set<ColorPickerType> allowedTypes;
+
+  /// Maximum number of gradient stops allowed when editing gradients.
   final int maxStops;
+
+  /// Optional text style applied to the field labels and values.
   final TextStyle? textStyle;
+
+  /// Decoration applied to the picker container.
   final BoxDecoration? decoration;
 
   @override
@@ -63,6 +76,7 @@ class _MbColorPickerWidgetState extends State<MbColorPickerWidget> {
     super.dispose();
   }
 
+  /// Opens the dialog used to edit the current color or gradient value.
   Future<void> openColorPicker() async {
     final newValue = await showDialog<ColorPickerValue>(
       context: context,
@@ -210,12 +224,16 @@ class _MbColorPickerWidgetState extends State<MbColorPickerWidget> {
     opacityController.text = opacityPercentage.toString();
   }
 
+  /// Whether the current value is a gradient.
   bool get isGradient => selectedValue is GradientValue;
 
+  /// Alpha channel of the current value in the `0..255` range.
   int get alphaChannel => (selectedValue.opacity * 255).round().clamp(0, 255);
 
+  /// Opacity percentage shown in the opacity field.
   int get opacityPercentage => (alphaChannel / 255 * 100).round();
 
+  /// Label shown in the hexadecimal field for the current value.
   String get hexadecimalLabel {
     if (isGradient) {
       return 'Gradient';

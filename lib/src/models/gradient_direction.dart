@@ -1,10 +1,15 @@
 import 'package:flutter/widgets.dart';
 
+/// Stores the begin and end alignments of a gradient direction.
 @immutable
 class GradientDirection {
+  /// Creates a gradient direction from [begin] to [end].
   const GradientDirection(this.begin, this.end);
 
+  /// Starting alignment of the gradient.
   final Alignment begin;
+
+  /// Ending alignment of the gradient.
   final Alignment end;
 
   @override

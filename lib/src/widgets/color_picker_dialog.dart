@@ -9,8 +9,10 @@ import 'package:mb_color_picker/src/widgets/gradient_picker/gradient_picker_widg
 import 'package:mb_color_picker/src/widgets/gradient_picker/widgets/color_picker_dialog_header.dart';
 import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
+/// Dialog used to edit either a solid color or a gradient value.
 class ColorPickerDialog extends StatefulWidget {
 
+  /// Creates a color picker dialog.
   const ColorPickerDialog({
     required this.allowedTypes,
     required this.initialValue,
@@ -18,8 +20,13 @@ class ColorPickerDialog extends StatefulWidget {
     super.key
   });
 
+  /// Initial value displayed when the dialog opens.
   final ColorPickerValue initialValue;
+
+  /// Selection modes available in the dialog.
   final Set<ColorPickerType> allowedTypes;
+
+  /// Maximum number of gradient stops allowed when editing gradients.
   final int maxStops;
 
   @override
@@ -87,7 +94,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
         TextButtonWidget(
           onPressed: () => Navigator.pop(context, widget.initialValue),
           icon: TablerIcons.x,
-          text: 'Cancelar',
+          text: 'Cancel',
         ),
         PrimaryButton(
           onPressed: () {
@@ -97,7 +104,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
             );
           },
           icon: TablerIcons.check,
-          text: 'Aplicar',
+          text: 'Apply',
         )
       ],
     );

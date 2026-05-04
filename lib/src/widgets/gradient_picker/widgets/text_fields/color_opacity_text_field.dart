@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+/// Text field used to edit a color opacity percentage.
 class ColorOpacityTextField extends StatelessWidget {
+  /// Creates an opacity text field.
   const ColorOpacityTextField({
     required this.controller,
     required this.onOpacitySubmitted,
@@ -9,8 +11,13 @@ class ColorOpacityTextField extends StatelessWidget {
     super.key
   });
 
+  /// Controller that stores the displayed opacity percentage.
   final TextEditingController controller;
+
+  /// Called when the user submits an opacity value.
   final ValueChanged<int> onOpacitySubmitted;
+
+  /// Text style applied to the field contents.
   final TextStyle? textStyle;
 
   @override
