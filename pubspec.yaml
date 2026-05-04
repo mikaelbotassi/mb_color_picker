@@ -1,7 +1,9 @@
 name: mb_color_picker
-description: "A flexible and customizable color and gradient picker for Flutter, featuring multi-stop gradient editing, interactive handles, and real-time preview."
+description: A flexible and customizable color and gradient picker for Flutter.
 version: 0.0.1
-homepage:
+homepage: https://github.com/mikaelbotassi/mb_color_picker
+repository: https://github.com/mikaelbotassi/mb_color_picker
+issue_tracker: https://github.com/mikaelbotassi/mb_color_picker/issues
 
 environment:
   sdk: ^3.11.4
